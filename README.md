@@ -74,21 +74,21 @@ These findings describe associations between customer characteristics and churn.
 
 **1. Churn Rate by Contract Type**
 
-Compares churn rates across month-to-month, one-year, and two-year contracts.
+Compares churn rates across month-to-month, one-year, and two-year contracts, highlighting the substantial difference between contract types.
 
 ![Churn Rate by Contract Type](images/churn_by_contract.png)
 
 **2. Churn Rate by Customer Tenure**
 
-Shows how churn rates differ across customer tenure groups.
+Shows how churn rates vary across customer tenure groups, with a particular focus on the higher churn risk among newer customers.
 
 ![Churn Rate by Customer Tenure](images/churn_by_tenure.png)
 
-**3. Churn Rate by Internet Service**
+**3. Churn Rate by Monthly Charges**
 
-Highlights the differences in churn rates between Fiber optic, DSL, and customers without internet service.
+Compares churn rates across monthly charge groups to explore how customer spending relates to churn.
 
-![Churn Rate by Internet Service](images/churn_by_internet_service.png)
+![Churn Rate by Monthly Charges](images/churn_by_monthly_charges.png)
 
 ## Recommendations
 
