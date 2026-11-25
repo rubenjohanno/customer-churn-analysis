@@ -1,7 +1,6 @@
-
 # Customer Churn Analysis (Python)
 
-In this project, I analysed the IBM Telco Customer Churn dataset using Python to identify customer characteristics associated with churn. The analysis focuses on contract type, customer tenure, monthly charges, internet service, and additional services to identify customer segments that may require greater retention attention.
+In this project, I analyzed the IBM Telco Customer Churn dataset using Python to identify customer characteristics associated with churn. The analysis focuses on contract type, customer tenure, monthly charges, internet service, and additional services to identify customer segments that may require greater retention attention.
 
 ## Business Problem
 
@@ -14,7 +13,7 @@ I focused on four main questions to better understand customer churn:
 
 ## Dataset
 
-**Source:** IBM Telco Customer Churn dataset.
+**Source:** [IBM Telco Customer Churn dataset](https://github.com/IBM/telco-customer-churn-on-icp4d) (the repository was archived by IBM in July 2024 and is read-only).
 
 **Dataset size:** 7,043 customers and 21 columns.
 
@@ -22,13 +21,15 @@ The dataset contains customer information, including demographic attributes, sub
 
 The dataset is a single snapshot and does not contain dates, so the analysis focuses on differences between customer segments rather than changes over time.
 
+The dataset is used here for educational and portfolio purposes. No separate license for the data is stated in the source repository.
+
 ## Tools
 
 - Python
 - pandas
 - matplotlib
 - seaborn
-- Jupyter Notebook
+- Google Colab (Jupyter Notebook)
 
 Python was used for data preparation, data quality checks, exploratory analysis, and visualization. All analysis was performed in the notebook.
 
@@ -36,16 +37,17 @@ Python was used for data preparation, data quality checks, exploratory analysis,
 
 | Item | Definition |
 |---|---|
-| Customers analysed | 7,043 customers |
+| Customers analyzed | 7,043 customers |
 | Churned customers | 1,869 customers |
 | Overall churn rate | 26.54% |
 | Churn rate | Percentage of customers in a segment whose churn status is Yes |
 | Tenure groups | 0–12, 13–24, 25–48, 49–60, and 61–72 months |
 | Monthly charge groups | ≤35, 35–70, 70–90, and >90 USD |
+| Group boundaries | Upper-inclusive. For example, 35–70 means above 35 up to and including 70 |
 | Add-on analysis | Limited to 5,517 customers with internet service |
 | Low-frequency subgroups | Groups with fewer than 120 customers were not interpreted |
 
-Before analysing customer segments, I performed data quality checks covering data types, missing values, duplicate records, blank strings, and category consistency.
+Before analyzing customer segments, I performed data quality checks covering data types, missing values, duplicate records, blank strings, and category consistency.
 
 The preparation included:
 
@@ -63,7 +65,7 @@ Overall, **1,869 of 7,043 customers churned, representing 26.54%** of the custom
 
 - **Contract type:** Month-to-month customers have a churn rate of 42.7%, compared with 11.3% for one-year contracts and 2.8% for two-year contracts. They account for 88.6% of all churners.
 - **Customer tenure:** Customers in their first 12 months have a churn rate of 47.4% and represent 55.5% of all churners. The rate falls to 6.6% among customers with 61–72 months of tenure.
-- **Monthly charges:** Churn increases from 10.9% among customers paying up to $35 to 37.8% in the $70–90 group, before declining to 32.8% above $90. This pattern is not linear and largely reflects differences in service mix.
+- **Monthly charges:** Churn increases from 10.9% among customers paying up to 35 USD to 37.8% in the 70–90 USD group, before declining to 32.8% above 90 USD. This pattern is not linear and largely reflects differences in service mix.
 - **Internet service:** Fiber optic customers have the highest churn rate at 41.9%, compared with 19.0% for DSL and 7.4% for customers without internet service. Fiber optic customers represent 44.0% of the customer base but 69.4% of churners.
 - **Additional services:** Among internet customers, those without OnlineSecurity or TechSupport have churn rates of 41.8% and 41.6%, compared with 14.6% and 15.2% among customers with these services. Part of this difference is associated with contract type.
 - **Combined factors:** Month-to-month customers in their first 12 months account for 28.3% of the customer base but 54.8% of all churners. Their churn rate is 51.4%.
@@ -116,7 +118,7 @@ Several limitations and assumptions should be considered when interpreting the r
 - The analysis is descriptive. The observed relationships do not prove that any customer characteristic causes churn.
 - Customer segments were compared using one or two variables at a time. Variables such as contract type, tenure, internet service, and monthly charges overlap, and no multivariate method was used to isolate the individual contribution of each factor.
 - Monthly charge and tenure groups were defined manually. Different group boundaries could produce different patterns.
-- Some subgroups contained fewer than 120 customers and were excluded from interpretation. Examples include Fiber optic customers in the $35–70 monthly charge group (112 customers) and two-year contract customers in the first 24 months of tenure (68 and 90 customers).
+- Some subgroups contained fewer than 120 customers and were excluded from interpretation. Examples include Fiber optic customers in the 35–70 USD monthly charge group (112 customers) and two-year contract customers in the first 24 months of tenure (68 and 90 customers).
 - OnlineBackup, DeviceProtection, StreamingTV, and StreamingMovies were not examined separately by internet type or contract type.
 - Tenure was not controlled in the add-on service analysis. Customers who subscribe to additional services may differ from those who do not in other characteristics.
 - Customers with long tenure are survivors: they have remained with the company. Their lower churn rates reflect customers who stayed, rather than necessarily indicating that long tenure itself prevents churn.
@@ -147,24 +149,34 @@ customer-churn-analysis/
 └── images/
     ├── churn_by_contract.png
     ├── churn_by_tenure.png
-    └── churn_by_internet_service.png
+    └── churn_by_monthly_charges.png
 ```
 
 ## How to Reproduce
 
-To explore the analysis or run the notebook yourself:
+**Option 1: Google Colab**
 
-1. Download the IBM Telco Customer Churn dataset from the [IBM dataset repository](https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv).
-2. Save the CSV file as `data/Telco-Customer-Churn.csv`.
-3. Create and activate a Python virtual environment.
-4. Install the required dependencies:
+1. In Google Colab, choose **File > Open notebook** and select the **GitHub** tab.
+2. Paste the URL of this repository and open `notebooks/customer_churn_analysis.ipynb`.
+3. Choose **Runtime > Run all**.
+
+**Option 2: Run locally**
+
+1. Create and activate a Python virtual environment.
+2. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Open `notebooks/customer_churn_analysis.ipynb` in Jupyter Notebook or JupyterLab.
-6. Run all cells in order.
+3. Open `notebooks/customer_churn_analysis.ipynb` in Jupyter Notebook or JupyterLab.
+4. Run all cells in order.
+
+The notebook loads the dataset directly from the IBM repository URL, so an internet connection is required. A copy of the dataset is stored in `data/Telco-Customer-Churn.csv` in case the link becomes unavailable. To use the local copy, replace the data loading line in the notebook with:
+
+```python
+df = pd.read_csv("../data/Telco-Customer-Churn.csv")
+```
 
 ## Author
 
